@@ -9,12 +9,14 @@ const Connections = () => {
     const dispatch = useDispatch();
     const fetchConnections = async () =>{
      try{
-    const res = await axios.get(BASE_URL + "/user/connections",{withCredentials:true})
+    const res = await axios.get(BASE_URL + "/user/connections",{withCredentials:true});
+    console.log("Fetched connections:", res.data);
     dispatch(addConnections(res.data.data))
      }
      catch(err){
         console.log(err);
      }
+  
     } 
     useEffect(()=>{
         fetchConnections();
@@ -39,6 +41,7 @@ const Connections = () => {
             <h2 className='font-bold text-xl'>{firstName + " " + lastName}</h2>
             {age&&gender&&<p>{age + " " + gender}</p>}
             <p>{about}</p>
+            <button className='btn btn-secondary'>Chat</button>
             </div>
         </div>
       )})}
